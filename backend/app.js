@@ -1,3 +1,4 @@
+const dotenv = require("dotenv")
 const express = require("express");
 const cors = require("cors");
 
@@ -9,6 +10,7 @@ const { leaveRouter, partnerRouter } = require("./router");
 const app = express();
 const port = config.port;
 const logger = Logger(__filename);
+dotenv.config()
 
 app.use(cors());
 app.use(express.json());
