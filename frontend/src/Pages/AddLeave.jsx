@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import config from '../config/config'; 
 
 const AddLeave = () => {
   const { partnerId } = useParams();
@@ -16,7 +15,7 @@ const AddLeave = () => {
   // Fetch partner schedule
   const fetchPartnerSchedule = async () => {
     try {
-      const response = await axios.get(`${config.apiUrl}/partner/${partnerId}`);
+      const response = await axios.get(`/api/partner/${partnerId}`);
       setSchedule(response.data.data.weeklySchedule);
       setLoading(false);
     } catch (error) {
@@ -73,7 +72,7 @@ const AddLeave = () => {
     };
 
     try {
-      await axios.post(`${config.apiUrl}/leave`, leaveRequest);
+      await axios.post(`/api/leave`, leaveRequest);
       alert('Leave applied successfully');
     } catch (error) {
       console.error('Error applying leave:', error);

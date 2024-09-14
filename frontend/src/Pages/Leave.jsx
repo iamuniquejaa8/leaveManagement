@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import config from '../config/config';
+
 
 const Leave = () => {
   const [leaves, setLeaves] = useState([]);
@@ -12,7 +12,7 @@ const Leave = () => {
     // Fetch leaves from the API
     const fetchLeaves = async () => {
       try {
-        const response = await axios.get(`${config.apiUrl}/leave`); 
+        const response = await axios.get(`/api/leave`); 
         setLeaves(response.data.data);
       } catch (error) {
         console.error('Error fetching leaves:', error);
@@ -30,7 +30,7 @@ const Leave = () => {
 
   const handleDelete = async (leaveId) => {
     try {
-      await axios.delete(`${config.apiUrl}/leave/${leaveId}`);
+      await axios.delete(`/api/leave/${leaveId}`);
       setLeaves(leaves.filter(leave => leave._id !== leaveId));
     } catch (error) {
       console.error('Error deleting leave:', error);
@@ -40,7 +40,7 @@ const Leave = () => {
   const handleStatusChange = async () => {
     if (selectedLeave) {
       try {
-        await axios.put(`${config.apiUrl}/leave/${selectedLeave._id}`, { status });
+        await axios.put(`/api/leave/${selectedLeave._id}`, { status });
         setLeaves(leaves.map(leave =>
           leave._id === selectedLeave._id ? { ...leave, status } : leave
         ));

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../component/Navbar";
-import config from "../config/config";
 import Modal from "../component/Modal";
 import moment from "moment";
 
@@ -15,7 +14,7 @@ const Partner = () => {
     const navigate = useNavigate(); 
 
     useEffect(() => {
-        axios.get(`${config.apiUrl}/partner`)
+        axios.get(`/api/partner`)
             .then(res => {
                 setWorkers(res.data.data);
             })
