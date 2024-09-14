@@ -1,4 +1,6 @@
 // prod config
+const dotenv= require("dotenv")
+dotenv.config()
 const prodConfig = {
     port: 8080 || process.env.PORT,
     mongo_uri:  process.env.MONGO_URI,
